@@ -37,7 +37,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="MoO-Oa-fkL" id="XFJ-b2-R8m"/>
-                        <segue destination="pxk-gg-3gB" kind="push" identifier="taskSegue" id="UFc-G9-aTX"/>
+                        <segue destination="pxk-gg-3gB" kind="push" identifier="taskSegue" id="sxi-11-Ats"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
