@@ -8,6 +8,7 @@
 
 #import "ZLAlbumsViewController.h"
 #import "ZLAssetsLibrary.h"
+#import "ZLAlbumTableViewCell.h"
 
 @interface ZLAlbumsViewController ()
 
@@ -27,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.albums = [NSMutableArray array];
     [self loadAlbums];
 
@@ -56,15 +58,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    static NSString *CellIdentifier = @"albumCell";
+
+    ZLAlbumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ZLAlbumTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    ALAssetsGroup *group = self.albums[indexPath.row];
-    cell.textLabel.text = [group valueForProperty:ALAssetsGroupPropertyName];
+    [cell setFromAlbum:self.albums[indexPath.row]];
     
     return cell;
 }

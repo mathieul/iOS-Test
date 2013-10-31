@@ -23,6 +23,7 @@
 		16994B261822CBA50004F57E /* ZLAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16994B251822CBA50004F57E /* ZLAlbumsViewController.m */; };
 		16994B281822CD340004F57E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16994B271822CD340004F57E /* AssetsLibrary.framework */; };
 		16994B2B1822CDE10004F57E /* ZLAssetsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 16994B2A1822CDE10004F57E /* ZLAssetsLibrary.m */; };
+		4E74442B1822E5C60018F9E4 /* ZLAlbumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E74442A1822E5C60018F9E4 /* ZLAlbumTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		16994B271822CD340004F57E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		16994B291822CDE10004F57E /* ZLAssetsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLAssetsLibrary.h; sourceTree = "<group>"; };
 		16994B2A1822CDE10004F57E /* ZLAssetsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLAssetsLibrary.m; sourceTree = "<group>"; };
+		4E7444291822E5C60018F9E4 /* ZLAlbumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLAlbumTableViewCell.h; sourceTree = "<group>"; };
+		4E74442A1822E5C60018F9E4 /* ZLAlbumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLAlbumTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				16994B251822CBA50004F57E /* ZLAlbumsViewController.m */,
 				16994B291822CDE10004F57E /* ZLAssetsLibrary.h */,
 				16994B2A1822CDE10004F57E /* ZLAssetsLibrary.m */,
+				4E7444291822E5C60018F9E4 /* ZLAlbumTableViewCell.h */,
+				4E74442A1822E5C60018F9E4 /* ZLAlbumTableViewCell.m */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				16994B001822CAC60004F57E /* ZLAppDelegate.m in Sources */,
 				16994AFC1822CAC60004F57E /* main.m in Sources */,
 				16994B2B1822CDE10004F57E /* ZLAssetsLibrary.m in Sources */,
+				4E74442B1822E5C60018F9E4 /* ZLAlbumTableViewCell.m in Sources */,
 				16994B261822CBA50004F57E /* ZLAlbumsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +477,7 @@
 				16994B201822CAC60004F57E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16994B211822CAC60004F57E /* Build configuration list for PBXNativeTarget "AlbumsTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +486,7 @@
 				16994B231822CAC60004F57E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
