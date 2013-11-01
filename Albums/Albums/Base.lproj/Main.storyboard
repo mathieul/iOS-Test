@@ -36,6 +36,7 @@
                                 <connections>
                                     <outlet property="albumImageView" destination="LfI-5m-7KN" id="Ji9-Jw-px6"/>
                                     <outlet property="albumTitleLabel" destination="q5A-pO-CAC" id="F6Z-tx-aps"/>
+                                    <segue destination="oSa-KW-Iz1" kind="push" id="MSM-Hw-jBo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,7 +49,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaV-Vg-JF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="99"/>
+            <point key="canvasLocation" x="713" y="99"/>
+        </scene>
+        <!--Album Photos View Controller-->
+        <scene sceneID="FAY-Gp-DEk">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="oSa-KW-Iz1" customClass="ZLAlbumPhotosViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="dmM-UW-ULD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZfB-6p-siF">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="xDv-5T-cKQ" customClass="ZLPhotoCollectionViewCell">
+                                <rect key="frame" x="0.0" y="64" width="104" height="104"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-F5-cxD">
+                                            <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <size key="customSize" width="104" height="104"/>
+                                <connections>
+                                    <outlet property="imageView" destination="b3Y-F5-cxD" id="iI0-i2-nf1"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="oSa-KW-Iz1" id="hPL-AM-kae"/>
+                            <outlet property="delegate" destination="oSa-KW-Iz1" id="VLT-fV-0Nc"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="8bO-II-RdG"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCB-r9-zK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1217" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9wT-up-79L">
