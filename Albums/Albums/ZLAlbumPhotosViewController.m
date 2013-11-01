@@ -70,4 +70,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(104.0f, 104.0f);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0f;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(2.0f, 0.0f, 2.0f, 0.0f);
+}
+
 @end
