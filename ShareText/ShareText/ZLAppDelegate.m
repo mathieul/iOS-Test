@@ -7,12 +7,23 @@
 //
 
 #import "ZLAppDelegate.h"
+#import "ZLViewController.h"
+
+@interface ZLAppDelegate()
+
+@property (nonatomic, strong) UINavigationController *navigationController;
+
+@end
 
 @implementation ZLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ZLViewController *viewController = (ZLViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ZeViewController"];
+    
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.window.rootViewController = self.navigationController;
     return YES;
 }
 							

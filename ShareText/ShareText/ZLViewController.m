@@ -32,7 +32,7 @@
 
 - (void)createTextField
 {
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, 35.0f, 280.0f, 30.0f)];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, 80.0f, 280.0f, 30.0f)];
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
     self.textField.placeholder = @"Enter text to share...";
@@ -44,7 +44,7 @@
 {
     self.buttonShare = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.buttonShare.translatesAutoresizingMaskIntoConstraints = NO;
-    self.buttonShare.frame = CGRectMake(20.0f, 80.0f, 280.0f, 44.0f);
+    self.buttonShare.frame = CGRectMake(20.0f, 120.0f, 280.0f, 44.0f);
     [self.buttonShare setTitle:@"Share" forState:UIControlStateNormal];
     [self.buttonShare addTarget:self
                          action:@selector(handleShare:)
