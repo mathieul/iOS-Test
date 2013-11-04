@@ -77,4 +77,18 @@ NSString *const kBottomBoundary = @"bottomBoundary";
     [self.animator addBehavior:self.pushBehavior];
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)paramTap
+{
+    CGPoint tapPoint = [paramTap locationInView:self.view];
+    CGPoint squareViewCenterPoint = self.squareView.center;
+    
+    CGFloat deltaX = tapPoint.x - squareViewCenterPoint.x;
+    CGFloat deltaY = tapPoint.y - squareViewCenterPoint.y;
+    CGFloat angle = atan2(deltaY, deltaX);
+    [self.pushBehavior setAngle:angle];
+    
+    CGFloat distanceBetweenPoints = sqrt(pow(deltaX, 2.0f) + pow(deltaY, 2.0f));
+    [self.pushBehavior setMagnitude:distanceBetweenPoints / 100.0f];
+}
+
 @end
