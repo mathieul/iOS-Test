@@ -13,8 +13,10 @@ NSString *const kBottomBoundary = @"bottomBoundary";
 
 @interface ViewController ()
 @property (nonatomic, strong) UIView *squareView;
+@property (nonatomic, strong) UIView *squareViewAnchorView;
+@property (nonatomic, strong) UIView *anchorView;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
-@property (nonatomic, strong) UIPushBehavior *pushBehavior;
+@property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
 @end
 
 @implementation ViewController
@@ -45,6 +47,7 @@ NSString *const kBottomBoundary = @"bottomBoundary";
     [super viewDidAppear:animated];
     
     [self createSmallSquareView];
+    [self createAnchorView];
     [self createGestureRecognizer];
     [self createAnimatorAndBehaviors];
 }
@@ -54,14 +57,27 @@ NSString *const kBottomBoundary = @"bottomBoundary";
     self.squareView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 80.0f, 80.0f)];
     self.squareView.backgroundColor = [UIColor greenColor];
     self.squareView.center = self.view.center;
+
+    self.squareViewAnchorView = [[UIView alloc]
+                                 initWithFrame:CGRectMake(60.0f, 0.0f, 20.0f, 20.0f)];
+    self.squareViewAnchorView.backgroundColor = [UIColor brownColor];
+
+    [self.squareView addSubview:self.squareViewAnchorView];
     [self.view addSubview:self.squareView];
+}
+
+- (void)createAnchorView
+{
+    self.anchorView = [[UIView alloc] initWithFrame:CGRectMake(120.0f, 120.0f, 20.0f, 20.0f)];
+    self.anchorView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.anchorView];
 }
 
 - (void)createGestureRecognizer
 {
-    UITapGestureRecognizer *tapGestureRecognizer =
-        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    UIPanGestureRecognizer *panGestureRecognizer =
+        [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
 }
 
 - (void)createAnimatorAndBehaviors
@@ -71,24 +87,18 @@ NSString *const kBottomBoundary = @"bottomBoundary";
         [[UICollisionBehavior alloc] initWithItems:@[self.squareView]];
     collision.translatesReferenceBoundsIntoBoundary = YES;
     [self.animator addBehavior:collision];
-    self.pushBehavior = [[UIPushBehavior alloc]
-                         initWithItems:@[self.squareView]
-                         mode:UIPushBehaviorModeContinuous];
-    [self.animator addBehavior:self.pushBehavior];
+
+    self.attachmentBehavior = [[UIAttachmentBehavior alloc]
+                               initWithItem:self.squareView
+                               attachedToAnchor:self.anchorView.center];
+    [self.animator addBehavior:self.attachmentBehavior];
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)paramTap
+- (void)handlePan:(UIPanGestureRecognizer *)paramPan
 {
-    CGPoint tapPoint = [paramTap locationInView:self.view];
-    CGPoint squareViewCenterPoint = self.squareView.center;
-    
-    CGFloat deltaX = tapPoint.x - squareViewCenterPoint.x;
-    CGFloat deltaY = tapPoint.y - squareViewCenterPoint.y;
-    CGFloat angle = atan2(deltaY, deltaX);
-    [self.pushBehavior setAngle:angle];
-    
-    CGFloat distanceBetweenPoints = sqrt(pow(deltaX, 2.0f) + pow(deltaY, 2.0f));
-    [self.pushBehavior setMagnitude:distanceBetweenPoints / 100.0f];
+    CGPoint tapPoint = [paramPan locationInView:self.view];
+    [self.attachmentBehavior setAnchorPoint:tapPoint];
+    self.anchorView.center = tapPoint;
 }
 
 @end
