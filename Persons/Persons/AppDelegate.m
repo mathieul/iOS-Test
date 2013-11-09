@@ -44,10 +44,32 @@
     return YES;
 }
 
+- (BOOL)deletePerson:(Person *)paramPerson
+{
+    
+    [self.managedObjectContext deleteObject:paramPerson];
+    NSError *deleteError = nil;
+    if (![self.managedObjectContext save:&deleteError]) {
+        NSLog(@"Failed deleting object");
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self createNewPerson:@"Brioche" lastName:@"Lajugie" age:5];
     [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
+    [self createNewPerson:@"Sophie" lastName:@"Lajugie" age:3];
+    [self createNewPerson:@"Zhanna" lastName:@"Lajugie" age:31];
+    [self createNewPerson:@"Ari" lastName:@"Lajugie" age:1];
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
+    fetchRequest.sortDescriptors = @[
+        [[NSSortDescriptor alloc] initWithKey:@"age" ascending:YES],
+        [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]
+    ];
     
     NSError *requestError = nil;
     NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
@@ -58,13 +80,7 @@
             NSLog(@"Person #%lu First Name = %@", (unsigned long)counter, thisPerson.firstName);
             NSLog(@"Person #%lu Last Name = %@", (unsigned long)counter, thisPerson.lastName);
             NSLog(@"Person #%lu Age = %ld", (unsigned long)counter, (unsigned long)[thisPerson.age unsignedIntegerValue]);
-
-            [self.managedObjectContext deleteObject:thisPerson];
-            NSError *deleteError = nil;
-            if (![self.managedObjectContext save:&deleteError]) {
-                NSLog(@"Failed deleting object #%lu", (unsigned long)counter);
-            }
-
+            [self deletePerson:thisPerson];
             counter += 1;
         }
     }
