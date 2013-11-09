@@ -15,29 +15,60 @@
 @synthesize managedObjectModel         = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+- (BOOL)createNewPerson:(NSString *)paramFirstName lastName:(NSString *)paramLastName age:(NSUInteger)paramAge
+{
+    if ([paramFirstName length] == 0 || [paramLastName length] == 0) {
+        NSLog(@"First name and last name are mandatory");
+        return NO;
+    }
+
+    Person *newPerson = [NSEntityDescription
+                         insertNewObjectForEntityForName:@"Person"
+                         inManagedObjectContext:self.managedObjectContext];
+
+    if (newPerson == nil) {
+        NSLog(@"Failed to create a new person in the context");
+        return NO;
+    }
+
+    newPerson.firstName = paramFirstName;
+    newPerson.lastName  = paramLastName;
+    newPerson.age       = @(paramAge);
+    
+    NSError *savingError = nil;
+    if (![self.managedObjectContext save:&savingError]) {
+        NSLog(@"Failed saving context: %@", savingError);
+        return NO;
+    }
+
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    Person *newPerson = [NSEntityDescription
-                      insertNewObjectForEntityForName:@"Person"
-                      inManagedObjectContext:self.managedObjectContext];
+    [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
     
-    if (newPerson != nil) {
-        newPerson.firstName = @"Mathieu";
-        newPerson.lastName = @"Lajugie";
-        newPerson.age = @42;
-        
-        NSError *savingError = nil;
-        
-        if ([self.managedObjectContext save:&savingError]) {
-            NSLog(@"Successfully saved context");
-        }
-        else {
-            NSLog(@"Failed saving context: %@", savingError);
+    NSError *requestError = nil;
+    NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    
+    if ([persons count] > 0) {
+        NSUInteger counter = 1;
+        for (Person *thisPerson in persons) {
+            NSLog(@"Person #%lu First Name = %@", (unsigned long)counter, thisPerson.firstName);
+            NSLog(@"Person #%lu Last Name = %@", (unsigned long)counter, thisPerson.lastName);
+            NSLog(@"Person #%lu Age = %ld", (unsigned long)counter, (unsigned long)[thisPerson.age unsignedIntegerValue]);
+
+            [self.managedObjectContext deleteObject:thisPerson];
+            NSError *deleteError = nil;
+            if (![self.managedObjectContext save:&deleteError]) {
+                NSLog(@"Failed deleting object #%lu", (unsigned long)counter);
+            }
+
+            counter += 1;
         }
     }
-    else {
-        NSLog(@"Failed to create a new person in the context");
-    }
+    
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
