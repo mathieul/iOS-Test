@@ -18,31 +18,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [self createNewPerson:@"Brioche" lastName:@"Lajugie" age:5];
-//    [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
-//    [self createNewPerson:@"Sophie" lastName:@"Lajugie" age:3];
-//    [self createNewPerson:@"Zhanna" lastName:@"Lajugie" age:31];
-//    [self createNewPerson:@"Ari" lastName:@"Lajugie" age:1];
-//
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
-//    fetchRequest.sortDescriptors = @[
-//        [[NSSortDescriptor alloc] initWithKey:@"age" ascending:YES],
-//        [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]
-//    ];
-//    
-//    NSError *requestError = nil;
-//    NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
-//    
-//    if ([persons count] > 0) {
-//        NSUInteger counter = 1;
-//        for (Person *thisPerson in persons) {
-//            NSLog(@"Person #%lu First Name = %@", (unsigned long)counter, thisPerson.firstName);
-//            NSLog(@"Person #%lu Last Name = %@", (unsigned long)counter, thisPerson.lastName);
-//            NSLog(@"Person #%lu Age = %ld", (unsigned long)counter, (unsigned long)[thisPerson.age unsignedIntegerValue]);
-//            [self deletePerson:thisPerson];
-//            counter += 1;
-//        }
-//    }
+    [self createNewPerson:@"Brioche" lastName:@"Lajugie" age:5];
+    [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
+    [self createNewPerson:@"Sophie" lastName:@"Lajugie" age:3];
+    [self createNewPerson:@"Zhanna" lastName:@"Lajugie" age:31];
+    [self createNewPerson:@"Ari" lastName:@"Lajugie" age:1];
+
 
     ViewController *viewController = [[ViewController alloc] initWithStyle:UITableViewStylePlain];
 
@@ -79,7 +60,20 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
+//    fetchRequest.sortDescriptors = @[
+//        [[NSSortDescriptor alloc] initWithKey:@"age" ascending:YES],
+//        [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]
+//    ];
+
+    NSError *requestError = nil;
+    NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+
+    if ([persons count] > 0) {
+        for (Person *thisPerson in persons) {
+            [self deletePerson:thisPerson];
+        }
+    }
     [self saveContext];
 }
 
