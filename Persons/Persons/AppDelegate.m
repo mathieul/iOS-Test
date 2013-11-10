@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import "Person.h"
 
 @implementation AppDelegate
@@ -15,81 +16,42 @@
 @synthesize managedObjectModel         = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (BOOL)createNewPerson:(NSString *)paramFirstName lastName:(NSString *)paramLastName age:(NSUInteger)paramAge
-{
-    if ([paramFirstName length] == 0 || [paramLastName length] == 0) {
-        NSLog(@"First name and last name are mandatory");
-        return NO;
-    }
-
-    Person *newPerson = [NSEntityDescription
-                         insertNewObjectForEntityForName:@"Person"
-                         inManagedObjectContext:self.managedObjectContext];
-
-    if (newPerson == nil) {
-        NSLog(@"Failed to create a new person in the context");
-        return NO;
-    }
-
-    newPerson.firstName = paramFirstName;
-    newPerson.lastName  = paramLastName;
-    newPerson.age       = @(paramAge);
-    
-    NSError *savingError = nil;
-    if (![self.managedObjectContext save:&savingError]) {
-        NSLog(@"Failed saving context: %@", savingError);
-        return NO;
-    }
-
-    return YES;
-}
-
-- (BOOL)deletePerson:(Person *)paramPerson
-{
-    
-    [self.managedObjectContext deleteObject:paramPerson];
-    NSError *deleteError = nil;
-    if (![self.managedObjectContext save:&deleteError]) {
-        NSLog(@"Failed deleting object");
-        return NO;
-    }
-    
-    return YES;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self createNewPerson:@"Brioche" lastName:@"Lajugie" age:5];
-    [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
-    [self createNewPerson:@"Sophie" lastName:@"Lajugie" age:3];
-    [self createNewPerson:@"Zhanna" lastName:@"Lajugie" age:31];
-    [self createNewPerson:@"Ari" lastName:@"Lajugie" age:1];
+//    [self createNewPerson:@"Brioche" lastName:@"Lajugie" age:5];
+//    [self createNewPerson:@"Mathieu" lastName:@"Lajugie" age:42];
+//    [self createNewPerson:@"Sophie" lastName:@"Lajugie" age:3];
+//    [self createNewPerson:@"Zhanna" lastName:@"Lajugie" age:31];
+//    [self createNewPerson:@"Ari" lastName:@"Lajugie" age:1];
+//
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
+//    fetchRequest.sortDescriptors = @[
+//        [[NSSortDescriptor alloc] initWithKey:@"age" ascending:YES],
+//        [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]
+//    ];
+//    
+//    NSError *requestError = nil;
+//    NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+//    
+//    if ([persons count] > 0) {
+//        NSUInteger counter = 1;
+//        for (Person *thisPerson in persons) {
+//            NSLog(@"Person #%lu First Name = %@", (unsigned long)counter, thisPerson.firstName);
+//            NSLog(@"Person #%lu Last Name = %@", (unsigned long)counter, thisPerson.lastName);
+//            NSLog(@"Person #%lu Age = %ld", (unsigned long)counter, (unsigned long)[thisPerson.age unsignedIntegerValue]);
+//            [self deletePerson:thisPerson];
+//            counter += 1;
+//        }
+//    }
 
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Person"];
-    fetchRequest.sortDescriptors = @[
-        [[NSSortDescriptor alloc] initWithKey:@"age" ascending:YES],
-        [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]
-    ];
-    
-    NSError *requestError = nil;
-    NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
-    
-    if ([persons count] > 0) {
-        NSUInteger counter = 1;
-        for (Person *thisPerson in persons) {
-            NSLog(@"Person #%lu First Name = %@", (unsigned long)counter, thisPerson.firstName);
-            NSLog(@"Person #%lu Last Name = %@", (unsigned long)counter, thisPerson.lastName);
-            NSLog(@"Person #%lu Age = %ld", (unsigned long)counter, (unsigned long)[thisPerson.age unsignedIntegerValue]);
-            [self deletePerson:thisPerson];
-            counter += 1;
-        }
-    }
-    
+    ViewController *viewController = [[ViewController alloc] initWithStyle:UITableViewStylePlain];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    self.window.rootViewController = viewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
     return YES;
 }
 
@@ -133,6 +95,50 @@
             abort();
         } 
     }
+}
+
+#pragma mark - Core Data custom
+
+- (BOOL)createNewPerson:(NSString *)paramFirstName lastName:(NSString *)paramLastName age:(NSUInteger)paramAge
+{
+    if ([paramFirstName length] == 0 || [paramLastName length] == 0) {
+        NSLog(@"First name and last name are mandatory");
+        return NO;
+    }
+    
+    Person *newPerson = [NSEntityDescription
+                         insertNewObjectForEntityForName:@"Person"
+                         inManagedObjectContext:self.managedObjectContext];
+    
+    if (newPerson == nil) {
+        NSLog(@"Failed to create a new person in the context");
+        return NO;
+    }
+    
+    newPerson.firstName = paramFirstName;
+    newPerson.lastName  = paramLastName;
+    newPerson.age       = @(paramAge);
+    
+    NSError *savingError = nil;
+    if (![self.managedObjectContext save:&savingError]) {
+        NSLog(@"Failed saving context: %@", savingError);
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)deletePerson:(Person *)paramPerson
+{
+    
+    [self.managedObjectContext deleteObject:paramPerson];
+    NSError *deleteError = nil;
+    if (![self.managedObjectContext save:&deleteError]) {
+        NSLog(@"Failed deleting object");
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Core Data stack

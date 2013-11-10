@@ -23,6 +23,7 @@
 		162CFDB6182E8A0800AF96E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 162CFDB4182E8A0800AF96E0 /* InfoPlist.strings */; };
 		162CFDB8182E8A0800AF96E0 /* PersonsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 162CFDB7182E8A0800AF96E0 /* PersonsTests.m */; };
 		162CFDC3182E8B0C00AF96E0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 162CFDC2182E8B0C00AF96E0 /* Person.m */; };
+		16C17164182F3F9400254849 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C17163182F3F9400254849 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		162CFDB7182E8A0800AF96E0 /* PersonsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonsTests.m; sourceTree = "<group>"; };
 		162CFDC1182E8B0C00AF96E0 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		162CFDC2182E8B0C00AF96E0 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		16C17162182F3F9400254849 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		16C17163182F3F9400254849 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				162CFDC1182E8B0C00AF96E0 /* Person.h */,
 				162CFDC2182E8B0C00AF96E0 /* Person.m */,
 				162CFD95182E8A0800AF96E0 /* Supporting Files */,
+				16C17162182F3F9400254849 /* ViewController.h */,
+				16C17163182F3F9400254849 /* ViewController.m */,
 			);
 			path = Persons;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				162CFDA2182E8A0800AF96E0 /* Persons.xcdatamodeld in Sources */,
 				162CFDC3182E8B0C00AF96E0 /* Person.m in Sources */,
 				162CFD9B182E8A0800AF96E0 /* main.m in Sources */,
+				16C17164182F3F9400254849 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +463,7 @@
 				162CFDBD182E8A0800AF96E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		162CFDBE182E8A0800AF96E0 /* Build configuration list for PBXNativeTarget "PersonsTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +472,7 @@
 				162CFDC0182E8A0800AF96E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
