@@ -68,6 +68,7 @@
 
     NSError *requestError = nil;
     NSArray *persons = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    NSLog(@"Number of persons fetched: %ld", (unsigned long)[persons count]);
 
     if ([persons count] > 0) {
         for (Person *thisPerson in persons) {

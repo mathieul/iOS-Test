@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "Person.h"
 
+static NSString *CellIdentifier = @"Cell";
+
 @interface ViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -22,7 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     }
     return self;
 }
@@ -108,10 +110,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     Person *person = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"indexPath = %@ - person.firstName = %@", indexPath, person.firstName);
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
     cell.textLabel.text = [person.firstName stringByAppendingFormat:@" %@", person.lastName];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Age: %lu", (unsigned long)[person.age unsignedIntegerValue]];
     
