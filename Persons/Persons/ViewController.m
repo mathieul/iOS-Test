@@ -130,19 +130,29 @@ static NSString *CellIdentifier = @"Cell";
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Person *personToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [[self managedObjectContext] deleteObject:personToDelete];
+        if ([personToDelete isDeleted]) {
+            NSError *savingError = nil;
+            if ([[self managedObjectContext] save:&savingError]) {
+                NSLog(@"Successfully deleted the object");
+            }
+            else {
+                NSLog(@"Failed deleting the object: %@", savingError);
+            }
+        }
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
