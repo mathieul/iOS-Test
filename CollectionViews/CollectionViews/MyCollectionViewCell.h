@@ -10,6 +10,7 @@
 
 @interface MyCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *labelView;
 
 @end

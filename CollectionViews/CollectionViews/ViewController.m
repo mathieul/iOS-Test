@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MyCollectionViewCell.h"
 
-static NSString *kCollectionViewCellIdentifier = @"Cells";
+static NSString *kCollectionViewCellIdentifier = @"Cell";
 
 @interface ViewController ()
 
@@ -92,7 +92,7 @@ static NSString *kCollectionViewCellIdentifier = @"Cells";
                                   dequeueReusableCellWithReuseIdentifier:kCollectionViewCellIdentifier
                                   forIndexPath:indexPath];
     cell.backgroundColor = [self allSectionColors][indexPath.section];
-    cell.textLabel.text = @"ALLO";
+    cell.labelView.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
 
     return cell;
 }
