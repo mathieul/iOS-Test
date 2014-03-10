@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3B02991852451D00FBFE4B /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B02981852451D00FBFE4B /* GameOverScene.m */; };
 		4E910E2B185044FC00114B9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E910E2A185044FC00114B9E /* Foundation.framework */; };
 		4E910E2D185044FC00114B9E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E910E2C185044FC00114B9E /* CoreGraphics.framework */; };
 		4E910E2F185044FC00114B9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E910E2E185044FC00114B9E /* UIKit.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E3B02971852451D00FBFE4B /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		4E3B02981852451D00FBFE4B /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		4E910E27185044FC00114B9E /* SpriteKitSimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpriteKitSimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E910E2A185044FC00114B9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4E910E2C185044FC00114B9E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,6 +142,8 @@
 				4E910E47185044FC00114B9E /* Spaceship.png */,
 				4E910E49185044FC00114B9E /* Images.xcassets */,
 				4E910E33185044FC00114B9E /* Supporting Files */,
+				4E3B02971852451D00FBFE4B /* GameOverScene.h */,
+				4E3B02981852451D00FBFE4B /* GameOverScene.m */,
 			);
 			path = SpriteKitSimpleGame;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E3B02991852451D00FBFE4B /* GameOverScene.m in Sources */,
 				4E910E46185044FC00114B9E /* MyScene.m in Sources */,
 				4E910E43185044FC00114B9E /* ViewController.m in Sources */,
 				4E910E3D185044FC00114B9E /* AppDelegate.m in Sources */,
@@ -496,6 +502,7 @@
 				4E910E62185044FD00114B9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E910E63185044FD00114B9E /* Build configuration list for PBXNativeTarget "SpriteKitSimpleGameTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +511,7 @@
 				4E910E65185044FD00114B9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
